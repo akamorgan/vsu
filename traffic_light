@@ -1,0 +1,24 @@
+void setup()
+{
+  pinMode(8, OUTPUT); // красный светодиод, подключенный через резистр
+  pinMode(9, OUTPUT); // жёлтый светодиод, подключенный через резистр
+  pinMode(10, OUTPUT); // зелёный светодиод, подключенный через резистр
+}
+
+void loop()
+{
+   digitalWrite(8, HIGH); //Моргает красный светодиод
+  delay(1000); 
+   digitalWrite(8, LOW);
+  delay(1000);
+  
+   digitalWrite(9, HIGH); //Моргает жёлтый светодиод
+  delay(1000); 
+   digitalWrite(9, LOW);
+  delay(1000);
+  
+   digitalWrite(10, HIGH); //Моргает зелёный светодиод
+  delay(1000); 
+   digitalWrite(10, LOW);
+  delay(1000);
+}
