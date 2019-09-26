@@ -1,24 +1,51 @@
+  #define redLed 8 
+  #define yellowLed 9 
+  #define greenLed 10 
+  #define button 2
+
+// Строчками сверху я присвоил пинам константы
+
 void setup()
 {
-  pinMode(8, OUTPUT); // красный светодиод, подключенный через резистр
-  pinMode(9, OUTPUT); // жёлтый светодиод, подключенный через резистр
-  pinMode(10, OUTPUT); // зелёный светодиод, подключенный через резистр
+  pinMode(redLed, OUTPUT); // красный светодиод, подключенный через резистр
+  pinMode(yellowLed, OUTPUT); // жёлтый светодиод, подключенный через резистр
+  pinMode(greenLed, OUTPUT); // зелёный светодиод, подключенный через резистр
+  
+  pinMode(button, INPUT_PULLUP); //Была добавлена кнопка 
+  
+  attachInterrupt(0, trafficLightLoop, FALLING); //Кнопка, которая прерывает основной цикл и запускает свой (Пришлось гуглить, потому что интеррапт работает на UNO только на 2 и 3 пине)
+  
 }
 
 void loop()
 {
-   digitalWrite(8, HIGH); //Моргает красный светодиод
+  
+   digitalWrite(redLed, HIGH); //Моргает красный светодиод
   delay(1000); 
-   digitalWrite(8, LOW);
+   digitalWrite(redLed, LOW);
   delay(1000);
   
-   digitalWrite(9, HIGH); //Моргает жёлтый светодиод
+   digitalWrite(yellowLed, HIGH); //Моргает жёлтый светодиод
   delay(1000); 
-   digitalWrite(9, LOW);
+   digitalWrite(yellowLed, LOW);
   delay(1000);
   
-   digitalWrite(10, HIGH); //Моргает зелёный светодиод
+   digitalWrite(greenLed, HIGH); //Моргает зелёнгый светодиод
   delay(1000); 
-   digitalWrite(10, LOW);
+   digitalWrite(greenLed, LOW);
   delay(1000);
+}
+void trafficLightLoop()
+{
+	digitalWrite(greenLed, HIGH); //задержка зелёного светодиода на 6сек, далее все моргают по 1 сек
+  	delay (6000);
+  	digitalWrite(greenLed, LOW);
+  	delay (1000);
+  	digitalWrite(yellowLed, HIGH);
+  	delay (1000);
+    digitalWrite(yellowLed, LOW);
+    delay (1000);
+  	digitalWrite(redLed, HIGH);
+  	delay (1000);
+    digitalWrite(redLed, LOW);
 }
